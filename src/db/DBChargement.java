@@ -22,12 +22,12 @@ public class DBChargement
 	
 	public DBChargement() throws ClassNotFoundException, SQLException
 	{	
-		ps_selectChargement = s.getCon().prepareStatement ("SELECT * FROM NOV3_CASTER_LOADING WHERE ID_LOADING=?");   
-	    
-		ps_insertChargement = s.getCon().prepareStatement ("INSERT INTO NOV3_CASTER_LOADING ( ID_LOADING , TYPE_LOADING , SPAN ,  LOGINNAME_1 ,  LOGINNAME_2 , ID_ALLOY , DATE_LOADING, WEIGHT_LAST_PDB ) values(?,?,?,?,?,?,?,?)");
-		
-        ps_updateCoreLoading 	= s.getCon().prepareStatement ("UPDATE NOV3_CASTER_LOADING SET NB_CORE_LOADING = NB_CORE_LOADING + 1 WHERE ID_LOADING=?");
-        ps_updateCoreUnLoading = s.getCon().prepareStatement  ("UPDATE NOV3_CASTER_LOADING SET NB_CORE_UNLOADING = NB_CORE_UNLOADING - 1 WHERE ID_LOADING=?");
+            ps_selectChargement = s.getCon().prepareStatement ("SELECT * FROM NOV3_CASTER_LOADING WHERE ID_LOADING=?");   
+
+            ps_insertChargement = s.getCon().prepareStatement ("INSERT INTO NOV3_CASTER_LOADING ( ID_LOADING , TYPE_LOADING , SPAN ,  LOGINNAME_1 ,  LOGINNAME_2 , ID_ALLOY , DATE_LOADING, WEIGHT_LAST_PDB ) values(?,?,?,?,?,?,?,?)");
+
+            ps_updateCoreLoading 	= s.getCon().prepareStatement ("UPDATE NOV3_CASTER_LOADING SET NB_CORE_LOADING = NB_CORE_LOADING + 1 WHERE ID_LOADING=?");
+            ps_updateCoreUnLoading = s.getCon().prepareStatement  ("UPDATE NOV3_CASTER_LOADING SET NB_CORE_UNLOADING = NB_CORE_UNLOADING - 1 WHERE ID_LOADING=?");
    	}
 	
 

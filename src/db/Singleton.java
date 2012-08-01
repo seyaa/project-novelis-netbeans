@@ -25,7 +25,10 @@ public class Singleton
 		{
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			 
-			con = DriverManager.getConnection("jdbc:oracle:oci8:@RUSSIGMAPTEST", "FLX92", "novelis" );
+			//con = DriverManager.getConnection("jdbc:oracle:oci8:@RUSSIGMAPTEST", "FLX92", "novelis" );
+                        //con = DriverManager.getConnection("jdbc:oracle:thin:@//RUSSIGMAPTEST:1521/RUSSIGMAPTEST ", "FLX92", "novelis" );
+                        // con = DriverManager.getConnection("jdbc:oracle:thin:@RUSSIGMAPTEST", "FLX92", "novelis" );      
+                            con = DriverManager.getConnection("jdbc:oracle:thin:FLX92/novelis@RUSSIGMAPTEST:1521:ORCL");   
 		}
 		catch( Exception e ) 
 		{
@@ -38,4 +41,6 @@ public class Singleton
     {
         return con;
     }
+    
+    
 }

@@ -8,7 +8,7 @@ import db.Singleton;
 
 public class Fonctions 
 {
-	private static Singleton s			= Singleton.getInstance();
+	private static Singleton s = Singleton.getInstance();
 	static java.sql.Timestamp dateCourante = getCurrentJavaSqlTimestamp();
 	
 	public static java.sql.Timestamp getCurrentJavaSqlTimestamp() 
