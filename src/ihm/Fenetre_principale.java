@@ -8,13 +8,9 @@ import classe.Charge;
 import classe.Chargement;
 import classe.Fonctions;
 import db.*;
-import java.awt.TextField;
-import java.awt.event.ActionEvent;
-import java.security.Timestamp;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -1319,11 +1315,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
                      } 
                      catch (ClassNotFoundException e1) 
                      {
-                             e1.printStackTrace();
                      } 
                      catch (SQLException e1) 
                      {
-                             e1.printStackTrace();
+      
                      }	
 
                      try 
@@ -1332,7 +1327,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
                      } 
                      catch (SQLException e2) 
                      {
-                         e2.printStackTrace();
                      }
                     chargementCreate = new Chargement( num+1 , typeFour, tabInfo[3], tabInfo[0], tabInfo[1], idAlliage , Integer.parseInt(tabInfo[2]) );
                     
@@ -1359,7 +1353,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
                      } 
                      catch (SQLException e1) 
                      {
-                             e1.printStackTrace();
                      }
 
                      panel_identite.setVisible(false);
@@ -1396,11 +1389,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     }
         
     private void type_boxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_type_boxActionPerformed
-       
-
-       
-        String type="";
-        
+ 
         if (evt.getSource().equals(type_box) )
         {
             try {
