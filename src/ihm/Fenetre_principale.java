@@ -1633,6 +1633,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 alliage_info.setText( "- Alliage : -");
         }
 		 
+        
         if (  s.equals("Amma") )
         {	
             alliage_box.setVisible(false);
