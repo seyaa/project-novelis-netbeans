@@ -283,24 +283,5 @@ public class DBCharge
 		
 		ps_validationCharge.executeUpdate(); 
 	}
-	public static void main ( String [] args) throws ClassNotFoundException, SQLException
-	{
-//		DBChargement DBChargement = new DBChargement();
-//		DBCharge 	 DBCharge 	  = new DBCharge();
-		
-		//Chargement chargementCreate = DBChargement.getChargement(7);
-		
-//		DBCharge.validationCharge(26, 15);
-		
-//		System.out.println ( charge.toString() );
-		
-		//System.out.println ( chargementCreate.toString() );
-	//	System.out.println ( DBCharge.getNumeroDernierePosition(chargementCreate) );
-		
-		//System.out.println ( DBCharge.selectNombreDeCharges(chargementCreate) );
-		//System.out.println ( DBCharge.getNumeroDerniereIdCharge() );
-		
-		//System.out.println ( DBCharge.getNumeroDernierChargement() );
-		
-	}
+	
 }

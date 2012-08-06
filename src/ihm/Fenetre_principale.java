@@ -4,20 +4,20 @@
  */
 package ihm;
 
+
 import classe.Charge;
 import classe.Chargement;
+import classe.ComposantMesure;
 import classe.Fonctions;
 import db.*;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JComboBox;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 /**
  *
@@ -51,6 +51,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         panel_identite = new javax.swing.JPanel();
         label_relais = new javax.swing.JLabel();
         label_nom1 = new javax.swing.JLabel();
@@ -140,18 +141,19 @@ public class Fenetre_principale extends javax.swing.JFrame {
         poidspdb_text = new javax.swing.JLabel();
         idfourneepdb_text = new javax.swing.JLabel();
         alliagepdb_text1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tableau_pdb = new javax.swing.JTable();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        jTable7 = new javax.swing.JTable();
         panel_addelem_compoconnue = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
+        radio_ext_vert = new javax.swing.JRadioButton();
+        radio_ext_noir = new javax.swing.JRadioButton();
+        radio_sow = new javax.swing.JRadioButton();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        button_saisie_manu = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tableurSaisieManu = new javax.swing.JTable();
+        poids_saisie_manu_value = new javax.swing.JTextField();
         panel_saisie_pion = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable3 = new javax.swing.JTable();
@@ -278,11 +280,12 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        panel_feuille.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         panel_feuille.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         panel_feuille.setMaximumSize(new java.awt.Dimension(1024, 768));
         panel_feuille.setMinimumSize(new java.awt.Dimension(1024, 768));
         panel_feuille.setName("Feuille four");
+
+        panel_ajoutcomposant.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         categorie_box.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Amma", "Lingot", "Déchet"}));
         categorie_box.addItemListener(new java.awt.event.ItemListener() {
@@ -559,34 +562,43 @@ public class Fenetre_principale extends javax.swing.JFrame {
         panel_ajoutcomposantLayout.setHorizontalGroup(
             panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
                         .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_ajoutcomposantLayout.createSequentialGroup()
-                                .addComponent(alliage_info)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1)
                             .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
-                                .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
-                                        .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel1)
-                                            .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
-                                                .addGap(8, 8, 8)
-                                                .addComponent(alliage_mot))
-                                            .addComponent(jLabel2))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(type_box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(alliage_box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(categorie_box, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addComponent(ajout_info)
-                                    .addComponent(type_info)
-                                    .addComponent(jLabel3))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 47, Short.MAX_VALUE)))
+                                .addGap(8, 8, 8)
+                                .addComponent(alliage_mot))
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(type_box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(alliage_box, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(categorie_box, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
+                        .addGap(55, 55, 55)
                         .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(alliage_info)
+                            .addComponent(ajout_info)
+                            .addComponent(type_info)))
+                    .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jLabel5))
+                    .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(equal_text7, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
                             .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
                                 .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(poids1_value, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(poids2_value, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -652,21 +664,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(equal_text1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(total_text2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                            .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jLabel5))
-                            .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(equal_text7, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(35, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_ajoutcomposantLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(total_info)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)
-                        .addGap(133, 133, 133))))
+                                        .addComponent(total_text2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_ajoutcomposantLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(total_info)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(133, 133, 133))
         );
 
         panel_ajoutcomposantLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {poids1_value, poids2_value, poids3_value, poids4_value, poids5_value, poids6_value, poids7_value});
@@ -678,13 +683,14 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel5)
                 .addGap(10, 10, 10)
-                .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(qte1_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(poids1_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel37)
-                    .addComponent(equal_text7)
+                .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(total_text1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(equal_text8))
+                    .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(qte1_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(poids1_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel37)
+                        .addComponent(equal_text7)
+                        .addComponent(equal_text8)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -741,6 +747,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     .addComponent(jButton1))
                 .addGap(10, 10, 10))
             .addGroup(panel_ajoutcomposantLayout.createSequentialGroup()
+                .addGap(9, 9, 9)
                 .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(categorie_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -752,7 +759,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(panel_ajoutcomposantLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(alliage_box, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(alliage_mot))
-                .addGap(27, 27, 27)
+                .addGap(31, 31, 31)
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(ajout_info)
@@ -762,6 +769,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addComponent(alliage_info)
                 .addContainerGap())
         );
+
+        panel_auteur.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel24.setText("Nom1 :");
@@ -786,11 +795,12 @@ public class Fenetre_principale extends javax.swing.JFrame {
         panel_auteurLayout.setHorizontalGroup(
             panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_auteurLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_auteurLayout.createSequentialGroup()
                         .addComponent(jLabel25)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(nom2_text, javax.swing.GroupLayout.DEFAULT_SIZE, 76, Short.MAX_VALUE))
+                        .addComponent(nom2_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panel_auteurLayout.createSequentialGroup()
                         .addComponent(jLabel24)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -799,21 +809,18 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel26)
                     .addComponent(jLabel28))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(41, 41, 41)
                 .addGroup(panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_auteurLayout.createSequentialGroup()
-                        .addComponent(idfournee_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                    .addGroup(panel_auteurLayout.createSequentialGroup()
-                        .addComponent(relais_text, javax.swing.GroupLayout.DEFAULT_SIZE, 54, Short.MAX_VALUE)
-                        .addGap(40, 40, 40)))
+                    .addComponent(relais_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(idfournee_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel29)
                     .addComponent(jLabel27))
-                .addGap(18, 18, 18)
-                .addGroup(panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(alliage_text, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                    .addComponent(date_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(date_text, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+                    .addComponent(alliage_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         panel_auteurLayout.setVerticalGroup(
@@ -825,22 +832,27 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(alliage_text, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(panel_auteurLayout.createSequentialGroup()
-                        .addGroup(panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(nom1_text, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel26)
-                                .addComponent(jLabel27))
-                            .addComponent(relais_text, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel24))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(panel_auteurLayout.createSequentialGroup()
+                                .addGroup(panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(nom1_text, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel26)
+                                    .addComponent(relais_text, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel24))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, panel_auteurLayout.createSequentialGroup()
+                                .addComponent(jLabel27)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(panel_auteurLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel29)
                             .addComponent(jLabel28)
                             .addComponent(nom2_text, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(idfournee_text, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(idfournee_text, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel25))))
                 .addGap(0, 11, Short.MAX_VALUE))
         );
+
+        panel_pdb_precedent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel30.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel30.setText("Caractéristiques du pied de bain précédent");
@@ -851,7 +863,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
         jLabel33.setText("ID fournée :");
 
-        tableau_pdb.setModel(new javax.swing.table.DefaultTableModel(
+        jTable7.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null}
             },
@@ -859,21 +871,17 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 "Cu", "Mg", "Fe", "Mn", "Si", "Zn", "Ti", "PbCdHg"
             }
         ));
-        tableau_pdb.setFocusable(false);
-        tableau_pdb.setSurrendersFocusOnKeystroke(true);
-        jScrollPane1.setViewportView(tableau_pdb);
+        jTable7.setEnabled(false);
+        jScrollPane9.setViewportView(jTable7);
 
         javax.swing.GroupLayout panel_pdb_precedentLayout = new javax.swing.GroupLayout(panel_pdb_precedent);
         panel_pdb_precedent.setLayout(panel_pdb_precedentLayout);
         panel_pdb_precedentLayout.setHorizontalGroup(
             panel_pdb_precedentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_pdb_precedentLayout.createSequentialGroup()
-                .addComponent(jLabel30)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(panel_pdb_precedentLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel_pdb_precedentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_pdb_precedentLayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_pdb_precedentLayout.createSequentialGroup()
                         .addComponent(jLabel31)
                         .addGap(18, 18, 18)
                         .addComponent(poidspdb_text, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -887,8 +895,10 @@ public class Fenetre_principale extends javax.swing.JFrame {
                         .addComponent(idfourneepdb_text, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))
                     .addGroup(panel_pdb_precedentLayout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(46, Short.MAX_VALUE))))
+                        .addGroup(panel_pdb_precedentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel30)
+                            .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 512, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 29, Short.MAX_VALUE))))
         );
         panel_pdb_precedentLayout.setVerticalGroup(
             panel_pdb_precedentLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -903,40 +913,53 @@ public class Fenetre_principale extends javax.swing.JFrame {
                     .addComponent(idfourneepdb_text, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(alliagepdb_text1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(331, 331, 331))
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        panel_addelem_compoconnue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jLabel34.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel34.setText("Ajout d'un composant avec une composition connue :");
 
-        jRadioButton1.setText("Ext Vert");
-        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(radio_ext_vert);
+        radio_ext_vert.setText("Ext Vert");
+        radio_ext_vert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton1ActionPerformed(evt);
+                radio_ext_vertActionPerformed(evt);
             }
         });
 
-        jRadioButton2.setText("Ext Noir");
-        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(radio_ext_noir);
+        radio_ext_noir.setText("Ext Noir");
+        radio_ext_noir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton2ActionPerformed(evt);
+                radio_ext_noirActionPerformed(evt);
             }
         });
 
-        jRadioButton3.setText("Sows");
-        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(radio_sow);
+        radio_sow.setText("Sows");
+        radio_sow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton3ActionPerformed(evt);
+                radio_sowActionPerformed(evt);
             }
         });
 
         jLabel35.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel35.setText("Poids :");
 
-        jButton2.setText("Ajouter");
+        button_saisie_manu.setText("Ajouter");
+        button_saisie_manu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_saisie_manuActionPerformed(evt);
+            }
+        });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jScrollPane4.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        jScrollPane4.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        tableurSaisieManu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null}
             },
@@ -944,8 +967,13 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 "Cu", "Mg", "Fe", "Mn", "Si", "Zn", "Ti", "PbCdHg"
             }
         ));
-        jTable2.setEnabled(false);
-        jScrollPane4.setViewportView(jTable2);
+        jScrollPane4.setViewportView(tableurSaisieManu);
+
+        poids_saisie_manu_value.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                poids_saisie_manu_valueActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panel_addelem_compoconnueLayout = new javax.swing.GroupLayout(panel_addelem_compoconnue);
         panel_addelem_compoconnue.setLayout(panel_addelem_compoconnueLayout);
@@ -953,45 +981,50 @@ public class Fenetre_principale extends javax.swing.JFrame {
             panel_addelem_compoconnueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_addelem_compoconnueLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_addelem_compoconnueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_addelem_compoconnueLayout.createSequentialGroup()
-                        .addComponent(jRadioButton2)
-                        .addGap(18, 18, 18)
-                        .addComponent(jRadioButton1)
-                        .addGap(36, 36, 36)
-                        .addComponent(jRadioButton3)
-                        .addGap(42, 42, 42)
-                        .addComponent(jLabel35)
-                        .addGap(88, 88, 88)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panel_addelem_compoconnueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel34)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                    .addGroup(panel_addelem_compoconnueLayout.createSequentialGroup()
+                        .addGap(95, 95, 95)
+                        .addComponent(radio_ext_noir)
+                        .addGap(18, 18, 18)
+                        .addComponent(radio_ext_vert)
+                        .addGap(36, 36, 36)
+                        .addComponent(radio_sow)
+                        .addGap(76, 76, 76)
+                        .addComponent(jLabel35)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(poids_saisie_manu_value, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panel_addelem_compoconnueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panel_addelem_compoconnueLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_addelem_compoconnueLayout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(button_saisie_manu))))
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 37, Short.MAX_VALUE))
         );
         panel_addelem_compoconnueLayout.setVerticalGroup(
             panel_addelem_compoconnueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_addelem_compoconnueLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel34)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(panel_addelem_compoconnueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(radio_ext_vert)
+                    .addComponent(radio_sow)
+                    .addComponent(radio_ext_noir)
+                    .addComponent(jLabel35)
+                    .addComponent(poids_saisie_manu_value, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(button_saisie_manu))
+                .addGap(6, 6, 6)
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(panel_addelem_compoconnueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_addelem_compoconnueLayout.createSequentialGroup()
-                        .addGap(35, 35, 35)
-                        .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(panel_addelem_compoconnueLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(panel_addelem_compoconnueLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButton1)
-                            .addComponent(jRadioButton3)
-                            .addComponent(jRadioButton2)
-                            .addComponent(jLabel35)
-                            .addComponent(jButton2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel36, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        panel_saisie_pion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1029,10 +1062,12 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(panel_saisie_pionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton3)
-                    .addGroup(panel_saisie_pionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 466, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel16)))
+                    .addGroup(panel_saisie_pionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(panel_saisie_pionLayout.createSequentialGroup()
+                            .addComponent(jLabel16)
+                            .addGap(368, 368, 368))
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 606, Short.MAX_VALUE)
+                        .addComponent(jScrollPane5)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_saisie_pionLayout.setVerticalGroup(
@@ -1048,6 +1083,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        panel_checklist.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel7.setText("Check-list contenant les charges du four :");
 
@@ -1058,15 +1095,17 @@ public class Fenetre_principale extends javax.swing.JFrame {
             .addGroup(panel_checklistLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addContainerGap(282, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panel_checklistLayout.setVerticalGroup(
             panel_checklistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_checklistLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel7)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(323, Short.MAX_VALUE))
         );
+
+        panel_compochecklist.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1089,6 +1128,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
         ));
         jTable6.setEnabled(false);
         jScrollPane8.setViewportView(jTable6);
+        jTable6.getColumnModel().getColumn(0).setHeaderValue("");
+        jTable6.getColumnModel().getColumn(8).setHeaderValue("PbCdHg");
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel17.setText("Composition en cours de la check-list");
@@ -1102,18 +1143,12 @@ public class Fenetre_principale extends javax.swing.JFrame {
             panel_compochecklistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_compochecklistLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panel_compochecklistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panel_compochecklistLayout.createSequentialGroup()
-                        .addComponent(jLabel18)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_compochecklistLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel17)
-                        .addGap(276, 276, 276))
-                    .addGroup(panel_compochecklistLayout.createSequentialGroup()
-                        .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane7)))
+                .addGroup(panel_compochecklistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel18)
+                    .addComponent(jLabel17)
+                    .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 509, Short.MAX_VALUE)
+                    .addComponent(jScrollPane7))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         panel_compochecklistLayout.setVerticalGroup(
             panel_compochecklistLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1135,17 +1170,18 @@ public class Fenetre_principale extends javax.swing.JFrame {
             panel_feuilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_feuilleLayout.createSequentialGroup()
                 .addGap(55, 55, 55)
-                .addGroup(panel_feuilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panel_addelem_compoconnue, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_ajoutcomposant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panel_saisie_pion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(75, 75, 75)
+                .addGroup(panel_feuilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(panel_addelem_compoconnue, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_saisie_pion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_ajoutcomposant, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
                 .addGroup(panel_feuilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panel_auteur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panel_checklist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panel_pdb_precedent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panel_compochecklist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(6, Short.MAX_VALUE))
+                    .addGroup(panel_feuilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(panel_checklist, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panel_auteur, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panel_pdb_precedent, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panel_compochecklist, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         panel_feuilleLayout.setVerticalGroup(
             panel_feuilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1154,19 +1190,19 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addGroup(panel_feuilleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panel_feuilleLayout.createSequentialGroup()
                         .addComponent(panel_ajoutcomposant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
+                        .addGap(18, 18, 18)
                         .addComponent(panel_addelem_compoconnue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 79, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addComponent(panel_saisie_pion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_feuilleLayout.createSequentialGroup()
+                    .addGroup(panel_feuilleLayout.createSequentialGroup()
                         .addComponent(panel_auteur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(panel_pdb_precedent, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(panel_checklist, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panel_pdb_precedent, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(panel_checklist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(panel_compochecklist, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         fichier.setText("Fichier");
@@ -1221,7 +1257,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panel_feuille, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1486,7 +1522,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
                             id_chargement 	= chargementCreate.getIdChargement();
                             poids 		= total;
                             id_alliage 		= dbAlliage.getIdAlliage(getAlliage());
-                            id_chargement 	= chargementCreate.getIdChargement();
                             position		= dbCharge.getNumeroDernierePosition(chargementCreate); // on l'incrémentera par la suite
                             id_charge		= dbCharge.getNumeroDerniereIdCharge();			
 
@@ -1523,20 +1558,20 @@ public class Fenetre_principale extends javax.swing.JFrame {
 
 
 				}
-			}        // TODO add your handling code here:
+			}       
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+    private void radio_ext_vertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio_ext_vertActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
+    }//GEN-LAST:event_radio_ext_vertActionPerformed
 
-    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+    private void radio_ext_noirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio_ext_noirActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton2ActionPerformed
+    }//GEN-LAST:event_radio_ext_noirActionPerformed
 
-    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+    private void radio_sowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radio_sowActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton3ActionPerformed
+    }//GEN-LAST:event_radio_sowActionPerformed
 
     private void poids1_valueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poids1_valueActionPerformed
         // TODO add your handling code here:
@@ -1617,7 +1652,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         if (  s.equals("Déchet") )
         {
             viderlisteSelection(type_box);
-            viderlisteSelection(alliage_value);
+            viderlisteSelection(alliage_box);
             
             alliage_value.setVisible(true);
             ajout_info.setText("- Ajout : Déchet");
@@ -1635,6 +1670,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
             alliage_info.setText( "- Alliage : "+ alliage);
             alliage_box.setVisible(true); 
             alliage_mot.setVisible(true);
+            
+        
         }
         
     }//GEN-LAST:event_categorie_boxItemStateChanged
@@ -1694,6 +1731,103 @@ public class Fenetre_principale extends javax.swing.JFrame {
         
         majTotal();
     }//GEN-LAST:event_qte1_valueKeyReleased
+
+    public boolean estComplet ( JTable tableau )
+    {
+        boolean estComplet = true;
+        
+
+        int size = tableau.getColumnCount();
+
+        System.out.println ( "size : " + size );
+
+        for ( int i = 0 ; i < (size-1) ; i++ )
+        {
+                Object cellule = tableau.getValueAt(0,i);
+
+                if ( cellule == null ) { estComplet = false; }
+        }
+        return estComplet;
+    }
+    private void button_saisie_manuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_saisie_manuActionPerformed
+       
+        int derniere_charge = 0;
+        int poids = 0;
+        String type_radio;
+        if(radio_ext_noir.isSelected()) 	type_radio = "ExtNoir";
+        else if(radio_ext_vert.isSelected())    type_radio = "ExtVert";
+        else if(radio_sow.isSelected())         type_radio = "sows";
+        else                                    type_radio = "";
+        
+        if (  Fonctions.isInteger(poids_saisie_manu_value.getText()) && ! type_radio.equals(""))
+        {	
+            poids = Integer.parseInt(poids_saisie_manu_value.getText());
+
+            if ( estComplet(tableurSaisieManu))
+            {
+                int resultat = JOptionPane.showConfirmDialog(null, "Ajouter " + type_radio + " ( " + poids + " kg ) au chargement ? ", "Confirmation d'ajout", JOptionPane.YES_NO_OPTION);			
+
+                if ( resultat == 0 )
+                {
+                    Timestamp date_ajout                = Fonctions.getCurrentJavaSqlTimestamp();
+                    DBCharge db_charge                  = null;
+                    int id_chargement 			= chargementCreate.getIdChargement();
+                    DBComposantMesure dbComposantMesure = new DBComposantMesure();
+                    int position                        = 0; 
+
+                    try 
+                    {
+                        db_charge = new DBCharge();
+                        position = db_charge.getNumeroDernierePosition(chargementCreate); // on l'incrémentera par la suite
+                        derniere_charge = db_charge.getNumeroDerniereIdCharge();
+                    } 
+                    catch (SQLException ex) 
+                    {
+                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    catch (ClassNotFoundException ex) 
+                    {
+                        Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    Charge charge = new Charge((derniere_charge+1), id_chargement, poids, type, "dechet", (position+1), 0, null, null, date_ajout, 0  );
+
+
+                    //ModuleCheckList.majCheckList ( chargementCreate );
+                    
+                    for ( int i = 0 ; i < 8 ; i++)
+                    {
+                        ComposantMesure composantMesure = new ComposantMesure(derniere_charge+1 , id_chargement, derniere_charge+1 , "test", 0.12);
+                        try 
+                        {
+                            dbComposantMesure.insertComposantMesure ( composantMesure );
+                            System.out.println ("INSERTED");
+                             System.out.println ("\n =>" + composantMesure.toString());
+                          //  ModuleCheckList.majCheckList(chargementCreate);
+                        } 
+                        catch (SQLException ex) 
+                        {
+                            Logger.getLogger(Fenetre_principale.class.getName()).log(Level.SEVERE, null, ex);
+                        } 
+                    } 
+                }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Le tableau doit être complet", "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else
+        {
+                JOptionPane.showMessageDialog(null, "Saisie incomplète", "Erreur de saisie", JOptionPane.ERROR_MESSAGE);
+        }
+    
+
+    }//GEN-LAST:event_button_saisie_manuActionPerformed
+
+    private void poids_saisie_manu_valueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_poids_saisie_manu_valueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_poids_saisie_manu_valueActionPerformed
 
     public boolean checkEntier (JTextField tf)
     {
@@ -1838,6 +1972,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JLabel alliagepdb_text1;
     private javax.swing.JButton bouton_annuler;
     private javax.swing.JButton bouton_creerchargement;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton button_saisie_manu;
     private javax.swing.JComboBox categorie_box;
     private javax.swing.JLabel date_text;
     private javax.swing.JLabel equal_text1;
@@ -1853,7 +1989,6 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JLabel idfourneepdb_text;
     private javax.swing.JMenu imprimer_menu;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1888,20 +2023,17 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTable jTable2;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable6;
+    private javax.swing.JTable jTable7;
     private javax.swing.JLabel label_alliage;
     private javax.swing.JLabel label_nom1;
     private javax.swing.JLabel label_nom2;
@@ -1930,6 +2062,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JTextField poids5_value;
     private javax.swing.JTextField poids6_value;
     private javax.swing.JTextField poids7_value;
+    private javax.swing.JTextField poids_saisie_manu_value;
     private javax.swing.JLabel poidspdb_text;
     private javax.swing.JTextField qte1_value;
     private javax.swing.JTextField qte2_value;
@@ -1938,10 +2071,13 @@ public class Fenetre_principale extends javax.swing.JFrame {
     private javax.swing.JTextField qte5_value;
     private javax.swing.JTextField qte6_value;
     private javax.swing.JTextField qte7_value;
+    private javax.swing.JRadioButton radio_ext_noir;
+    private javax.swing.JRadioButton radio_ext_vert;
+    private javax.swing.JRadioButton radio_sow;
     private javax.swing.JMenu rechercher_menu;
     private javax.swing.JLabel relais_text;
     private javax.swing.JComboBox relais_value;
-    private javax.swing.JTable tableau_pdb;
+    private javax.swing.JTable tableurSaisieManu;
     private javax.swing.JLabel total_info;
     private javax.swing.JLabel total_text1;
     private javax.swing.JLabel total_text2;
