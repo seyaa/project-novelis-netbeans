@@ -1634,6 +1634,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         }
 		 
         
+        
         if (  s.equals("Amma") )
         {	
             alliage_box.setVisible(false);
