@@ -1681,7 +1681,8 @@ public class Fenetre_principale extends javax.swing.JFrame {
                 
         if (evt.getSource().equals(alliage_box) )
         {	
-            try {
+            try 
+            {
                  alliage = Integer.parseInt(alliage_box.getSelectedItem().toString());	
             }
            catch (Exception y) 
@@ -1922,6 +1923,7 @@ public class Fenetre_principale extends javax.swing.JFrame {
         }
     }
     /**
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {
